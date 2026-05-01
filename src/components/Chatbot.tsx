@@ -45,8 +45,12 @@ export const Chatbot = () => {
     setMessages((prev) => [...prev, { role: "user", content: text }]);
     setIsLoading(true);
 
+    // In dev: Vite proxies /api → localhost:3400
+    // In prod: VITE_API_URL points to the Cloud Run service URL
+    const apiBase = import.meta.env.VITE_API_URL || "/api";
+
     try {
-      const response = await fetch("/api/smartElectionAgent", {
+      const response = await fetch(`${apiBase}/smartElectionAgent`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: text }),

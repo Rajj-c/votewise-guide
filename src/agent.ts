@@ -105,8 +105,18 @@ import express from 'express';
 import cors from 'cors';
 
 const app = express();
-app.use(cors());
+
+// Allow both local dev frontend and deployed Firebase Hosting frontend
+app.use(cors({
+  origin: process.env.ALLOWED_ORIGIN || '*',
+  methods: ['POST', 'GET', 'OPTIONS'],
+}));
 app.use(express.json());
+
+// Health check — Cloud Run needs this to confirm the container is alive
+app.get('/health', (_req, res) => {
+  res.status(200).json({ status: 'ok', service: 'votewise-agent' });
+});
 
 app.post('/smartElectionAgent', async (req, res) => {
   try {
@@ -119,7 +129,9 @@ app.post('/smartElectionAgent', async (req, res) => {
   }
 });
 
-const PORT = 3400;
-app.listen(PORT, () => {
-  console.log(`✅ Flow API Server running on http://127.0.0.1:${PORT}`);
+// Cloud Run injects PORT automatically — fallback to 3400 for local dev
+const PORT = parseInt(process.env.PORT || '3400', 10);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ VoteWise Agent running on port ${PORT}`);
 });
+
