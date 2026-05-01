@@ -120,6 +120,7 @@ export default function EligibilitySection() {
               </div>
             </div>
           )}
+          </div>
         </div>
       </div>
     </section>
