@@ -1,19 +1,10 @@
 import { useState } from "react";
-import { ChevronDown, ChevronRight, ShoppingCart, Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import { useI18n, LANGS } from "@/i18n/I18n";
 
 function Logo() {
-  // 8-petal flower
-  const r = 10, c = 16;
-  const petals = Array.from({ length: 8 }).map((_, i) => {
-    const a = (i / 8) * Math.PI * 2;
-    return <circle key={i} cx={c + r * Math.cos(a)} cy={c + r * Math.sin(a)} r={3.5} fill="#ef4d23" />;
-  });
   return (
-    <svg viewBox="0 0 32 32" className="w-7 h-7 sm:w-8 sm:h-8 shrink-0" aria-label="Logo">
-      {petals}
-      <circle cx={c} cy={c} r={3.5} fill="#ef4d23" />
-    </svg>
+    <img src="/android-chrome-192x192.png" alt="Smart Election Guide Logo" className="w-7 h-7 sm:w-8 sm:h-8 shrink-0 rounded-full" />
   );
 }
 
@@ -60,15 +51,7 @@ export default function Navbar() {
             ))}
           </div>
 
-          <ShoppingCart className="hidden md:block w-4 h-4 text-neutral-700" />
 
-          <a href="#guide" className="bg-[#ef4d23] text-white rounded-full pl-3 sm:pl-4 pr-1 py-1 flex items-center gap-2 text-[13px]">
-            <span className="hidden sm:inline">{t("cta_early_long")}</span>
-            <span className="sm:hidden">{t("cta_early")}</span>
-            <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
-              <ChevronRight className="w-3.5 h-3.5" />
-            </span>
-          </a>
 
           <button className="md:hidden ml-1 p-2 text-neutral-700" onClick={() => setOpen(!open)} aria-label="Menu">
             <Menu className="w-5 h-5" />

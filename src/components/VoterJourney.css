@@ -1,0 +1,194 @@
+/* Animated hint/tooltip styles for VoterJourney */
+.item-hints {
+  --brand: #ef4d23;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hint {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hint-dot {
+  z-index: 3;
+  border: 2px solid var(--brand);
+  border-radius: 50%;
+  width: 68px;
+  height: 68px;
+  transform: scale(0.95);
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand);
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: white;
+  box-shadow: 0 4px 14px rgba(239, 77, 35, 0.18);
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.2;
+}
+
+.hint:hover .hint-dot {
+  background: var(--brand);
+  color: white;
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(239, 77, 35, 0.35);
+}
+
+.hint-radius {
+  background-color: rgba(239, 77, 35, 0.07);
+  border-radius: 50%;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  left: 50%;
+  margin: -50px 0 0 -50px;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+  transition: all 0.4s ease;
+}
+
+.hint:hover .hint-radius {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.8);
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1.2); opacity: 0.5; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.hint-content {
+  width: 260px;
+  position: absolute;
+  z-index: 50;
+  padding: 20px 16px 16px;
+  opacity: 0;
+  transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.3s ease;
+  visibility: hidden;
+  pointer-events: none;
+  background: #1a1a2e;
+  border-radius: 14px;
+  color: #ffffff;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+  border: 1px solid rgba(239, 77, 35, 0.25);
+}
+
+.hint:hover .hint-content {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Position variants */
+.hint[data-position="top"] .hint-content {
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+}
+.hint:hover[data-position="top"] .hint-content {
+  transform: translateX(-50%) translateY(0);
+}
+
+.hint[data-position="bottom"] .hint-content {
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+}
+.hint:hover[data-position="bottom"] .hint-content {
+  transform: translateX(-50%) translateY(0);
+}
+
+.hint[data-position="right"] .hint-content {
+  left: 90px;
+  top: 50%;
+  transform: translateY(-50%) translateX(8px);
+}
+.hint:hover[data-position="right"] .hint-content {
+  transform: translateY(-50%) translateX(0);
+}
+
+.hint[data-position="left"] .hint-content {
+  right: 90px;
+  top: 50%;
+  transform: translateY(-50%) translateX(-8px);
+}
+.hint:hover[data-position="left"] .hint-content {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Animated line decorations */
+.hint-content::before {
+  width: 0px;
+  bottom: -1px;
+  left: 16px;
+  content: "";
+  background-color: var(--brand);
+  height: 2px;
+  position: absolute;
+  transition: width 0.4s ease;
+  border-radius: 2px;
+}
+.hint:hover .hint-content::before {
+  width: 60px;
+}
+
+.hint-content h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ef4d23;
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+.hint-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.hint-content ul li {
+  font-size: 12px;
+  color: #d1d5db;
+  line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.hint-content ul li::before {
+  content: "→";
+  color: #ef4d23;
+  font-size: 10px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.ask-raj-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #ef4d23;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 12px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+  pointer-events: all;
+}
+.ask-raj-btn:hover {
+  background: #c73f1d;
+}
