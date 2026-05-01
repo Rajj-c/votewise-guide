@@ -218,7 +218,7 @@ This project was built with the following commitments:
 
 ## 📄 License
 
-This project is built for educational and civic purposes as part of a hackathon. All election information is sourced from publicly available ECI guidelines.
+This project is built for educational and civic purposes as part of competition. All election information is sourced from publicly available ECI guidelines.
 
 ---
 
