@@ -131,7 +131,10 @@ app.post('/smartElectionAgent', async (req, res) => {
 
 // Cloud Run injects PORT automatically — fallback to 3400 for local dev
 const PORT = parseInt(process.env.PORT || '3400', 10);
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`✅ VoteWise Agent running on port ${PORT}`);
-});
 
+// IMPORTANT: Do not start the Express server if running inside Vercel serverless functions!
+if (!process.env.VERCEL) {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`✅ VoteWise Agent running on port ${PORT}`);
+  });
+}
