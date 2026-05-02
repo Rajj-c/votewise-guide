@@ -1,6 +1,9 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { smartElectionAgent } from '../src/agent';
 
+// Allow this serverless function to run for up to 60 seconds to prevent Gemini timeouts
+export const maxDuration = 60;
+
 export default async function handler(
   request: VercelRequest,
   response: VercelResponse
