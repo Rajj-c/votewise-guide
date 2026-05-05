@@ -65,7 +65,7 @@ export default async function handler(
     }
 
     const result = await ai.generate({
-      model: 'googleai/gemini-2.0-flash',
+      model: 'googleai/gemini-1.5-flash',
       system: SYSTEM_PROMPT,
       prompt: question,
       config: {
